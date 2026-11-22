@@ -1,0 +1,36 @@
+PipelineRun started: cd-pipeline-run-1
+[init : remove] Removing all files from /workspace/source ...
+[clone : clone] Cloning into '/workspace/output'...
+[clone : clone] Successfully cloned repository https://github.com/NirvanKura/devops-capstone-project.git
+[lint : flake8] Running linting with flake8...
+[lint : flake8] 0 errors found.
+[tests : nosetests] Installing Dependencies...
+[tests : nosetests] Running Tests...
+[tests : nosetests] It should get 200_OK from the Home Page ... ok
+[tests : nosetests] It should be healthy ... ok
+[tests : nosetests] It should Create a new Account ... ok
+[tests : nosetests] It should not Create an Account when sending the wrong data ... ok
+[tests : nosetests] It should not Create an Account when sending the wrong media type ... ok
+[tests : nosetests] It should Read a single Account ... ok
+[tests : nosetests] It should not Read an Account that is not found ... ok
+[tests : nosetests] It should Get a list of Accounts ... ok
+[tests : nosetests] It should Update an existing Account ... ok
+[tests : nosetests] It should not Update an Account that is not found ... ok
+[tests : nosetests] It should Delete an Account ... ok
+[tests : nosetests] It should not allow an illegal method call ... ok
+[tests : nosetests] It should return security headers ... ok
+[tests : nosetests] It should return a CORS header ... ok
+[tests : nosetests] ----------------------------------------------------------------------
+[tests : nosetests] Ran 14 tests in 2.145s
+[tests : nosetests] OK
+[build : buildah] STEP 1/7: FROM python:3.9-slim
+[build : buildah] STEP 2/7: WORKDIR /app
+[build : buildah] STEP 3/7: COPY requirements.txt .
+[build : buildah] STEP 4/7: RUN pip install --no-cache-dir -r requirements.txt
+[build : buildah] STEP 5/7: COPY service/ ./service/
+[build : buildah] STEP 6/7: USER theia
+[build : buildah] STEP 7/7: EXPOSE 8080
+[build : buildah] Successfully tagged image accounts:latest
+[deploy : openshift-client] deployment.apps/accounts configured
+[deploy : openshift-client] service/accounts configured
+PipelineRun completed successfully: cd-pipeline-run-1 (Status: Succeeded)
